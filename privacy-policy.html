@@ -3,240 +3,723 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="color-scheme" content="light dark">
+  <meta name="theme-color" content="#ffffff" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0f1114" media="(prefers-color-scheme: dark)">
   <title>Privacy Policy - dmer</title>
   <style>
-    * {
-      margin: 0;
-      padding: 0;
+    :root {
+      color-scheme: light dark;
+
+      --bg: #ffffff;
+      --surface: #f6f7f9;
+      --text: #16181d;
+      --text-secondary: #414854;
+      --text-tertiary: #5c6470;
+      --border: #e3e6eb;
+      --border-strong: #cdd2da;
+      --accent: #2c5cc5;
+      --accent-soft: rgba(44, 92, 197, 0.14);
+
+      --font-sans: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", "Noto Sans", Arial, sans-serif;
+      --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
+
+      --container: 40rem;
+      --gutter: 1.25rem;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #0f1114;
+        --surface: #171a1f;
+        --text: #eceef1;
+        --text-secondary: #bcc2cc;
+        --text-tertiary: #9aa2ae;
+        --border: #272b32;
+        --border-strong: #3a3f48;
+        --accent: #8eb0f7;
+        --accent-soft: rgba(142, 176, 247, 0.2);
+      }
+    }
+
+    *,
+    *::before,
+    *::after {
       box-sizing: border-box;
     }
 
+    html {
+      -webkit-text-size-adjust: 100%;
+      text-size-adjust: 100%;
+    }
+
+    @media (prefers-reduced-motion: no-preference) {
+      html {
+        scroll-behavior: smooth;
+      }
+    }
+
     body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
-      background: #0a0a0a;
-      color: #e0e0e0;
-      line-height: 1.7;
-      padding: 40px 20px;
+      margin: 0;
+      background: var(--bg);
+      color: var(--text-secondary);
+      font-family: var(--font-sans);
+      font-size: 1rem;
+      line-height: 1.65;
+      overflow-wrap: break-word;
+    }
+
+    ::selection {
+      background: var(--accent-soft);
+    }
+
+    h1,
+    h2,
+    p,
+    ul,
+    ol {
+      margin: 0;
+    }
+
+    a {
+      color: var(--accent);
+      text-decoration: underline;
+      text-decoration-thickness: 1px;
+      text-underline-offset: 0.18em;
+    }
+
+    a:hover {
+      text-decoration-thickness: 2px;
+    }
+
+    :focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+      border-radius: 3px;
+    }
+
+    strong {
+      color: var(--text);
+      font-weight: 600;
+    }
+
+    code {
+      font-family: var(--font-mono);
+      font-size: 0.9em;
     }
 
     .container {
-      max-width: 700px;
-      margin: 0 auto;
+      max-width: var(--container);
+      margin-inline: auto;
+      padding-inline: var(--gutter);
     }
 
-    header {
-      text-align: center;
-      margin-bottom: 50px;
-      padding-bottom: 30px;
-      border-bottom: 1px solid #222;
+    .skip-link {
+      position: absolute;
+      top: 0.5rem;
+      left: 0.5rem;
+      z-index: 10;
+      padding: 0.5rem 0.875rem;
+      background: var(--bg);
+      border: 1px solid var(--border-strong);
+      border-radius: 8px;
+      font-size: 0.875rem;
+      font-weight: 500;
+      transform: translateY(-200%);
     }
 
-    .logo {
-      font-size: 48px;
-      color: #c9a962;
-      margin-bottom: 10px;
+    .skip-link:focus {
+      transform: none;
+    }
+
+    /* Header */
+
+    .site-header {
+      border-bottom: 1px solid var(--border);
+    }
+
+    .site-header .container {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 0.125rem 1.5rem;
+      padding-block: 0.875rem;
+    }
+
+    .product {
+      color: var(--text);
+      font-size: 0.9375rem;
+      font-weight: 600;
+      letter-spacing: -0.005em;
+    }
+
+    .updated {
+      color: var(--text-tertiary);
+      font-size: 0.8125rem;
+    }
+
+    /* Title */
+
+    .hero {
+      padding-block: 2.5rem 2rem;
     }
 
     h1 {
-      font-size: 28px;
-      font-weight: 600;
-      margin-bottom: 5px;
-      color: #fff;
+      color: var(--text);
+      font-size: clamp(1.875rem, 1.45rem + 2.1vw, 2.625rem);
+      font-weight: 700;
+      line-height: 1.12;
+      letter-spacing: -0.022em;
+      text-wrap: balance;
     }
 
     .subtitle {
-      color: #888;
-      font-size: 14px;
+      margin-top: 0.75rem;
+      color: var(--text-tertiary);
+      font-size: 1.0625rem;
+      line-height: 1.5;
+      text-wrap: balance;
     }
 
-    h2 {
-      font-size: 20px;
-      color: #c9a962;
-      margin: 40px 0 20px 0;
+    /* Layout */
+
+    .layout {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr);
+      gap: 1.5rem;
+      padding-bottom: 4rem;
+    }
+
+    /* Summary */
+
+    .summary {
+      padding: 1.25rem 1.375rem 1.375rem;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+    }
+
+    .summary h2 {
+      margin-bottom: 0.5rem;
+      color: var(--text-tertiary);
+      font-size: 0.8125rem;
+      font-weight: 600;
+      line-height: 1.4;
+      letter-spacing: 0.01em;
+    }
+
+    .summary p {
+      color: var(--text);
+      text-wrap: pretty;
+    }
+
+    /* Table of contents */
+
+    .toc {
+      padding: 1rem 1.375rem 1.125rem;
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      font-size: 0.9375rem;
+      line-height: 1.4;
+    }
+
+    .toc-title {
+      margin-bottom: 0.5rem;
+      color: var(--text-tertiary);
+      font-size: 0.8125rem;
+      font-weight: 600;
+      letter-spacing: 0.01em;
+    }
+
+    .toc ol {
+      padding: 0;
+      list-style: none;
+    }
+
+    .toc a {
+      display: block;
+      padding-block: 0.3125rem;
+      color: var(--text-secondary);
+      text-decoration: none;
+    }
+
+    .toc a:hover {
+      color: var(--text);
+      text-decoration: underline;
+      text-decoration-thickness: 1px;
+    }
+
+    .toc .toc-summary {
+      display: none;
+    }
+
+    @media (min-width: 34rem) and (max-width: 63.999rem) {
+      .toc ol {
+        columns: 2;
+        column-gap: 2rem;
+      }
+
+      .toc li {
+        break-inside: avoid;
+      }
+    }
+
+    /* Policy text */
+
+    .policy {
+      min-width: 0;
+      margin-top: 1rem;
+    }
+
+    .policy section + section {
+      margin-top: 2.75rem;
+    }
+
+    .policy section {
+      scroll-margin-top: 1.5rem;
+    }
+
+    .policy h2 {
+      margin-bottom: 0.875rem;
+      color: var(--text);
+      font-size: 1.3125rem;
+      font-weight: 600;
+      line-height: 1.3;
+      letter-spacing: -0.012em;
+      text-wrap: balance;
+    }
+
+    .policy p,
+    .policy li {
+      text-wrap: pretty;
+    }
+
+    .policy p + p,
+    .policy p + ul,
+    .policy ul + p,
+    .policy .table-wrap + p {
+      margin-top: 1rem;
+    }
+
+    .policy ul {
+      padding-left: 1.25rem;
+    }
+
+    .policy li + li {
+      margin-top: 0.5rem;
+    }
+
+    .policy li::marker {
+      color: var(--border-strong);
+    }
+
+    .policy .key-point {
+      color: var(--text);
       font-weight: 600;
     }
 
-    p {
-      margin-bottom: 16px;
-      color: #bbb;
+    .policy .key-point + p {
+      margin-top: 0.25rem;
     }
 
-    ul {
-      margin: 16px 0;
-      padding-left: 24px;
-    }
+    /* Tables */
 
-    li {
-      margin-bottom: 10px;
-      color: #bbb;
-    }
-
-    .highlight {
-      background: #1a1a1a;
-      border-left: 3px solid #c9a962;
-      padding: 20px;
-      margin: 24px 0;
-      border-radius: 0 8px 8px 0;
-    }
-
-    .highlight p {
-      margin: 0;
-      color: #ddd;
-    }
-
-    .badge {
-      display: inline-block;
-      background: #1a2e1a;
-      color: #4ade80;
-      padding: 4px 12px;
-      border-radius: 20px;
-      font-size: 12px;
-      font-weight: 600;
-      margin-right: 8px;
-    }
-
-    .badge.no {
-      background: #2e1a1a;
-      color: #f87171;
+    .table-wrap {
+      margin-top: 0.25rem;
     }
 
     table {
       width: 100%;
       border-collapse: collapse;
-      margin: 20px 0;
+      font-size: 0.9375em;
+      line-height: 1.55;
     }
 
-    th, td {
-      padding: 12px 16px;
-      text-align: left;
-      border-bottom: 1px solid #222;
-    }
-
-    th {
-      color: #888;
-      font-weight: 500;
-      font-size: 12px;
-      text-transform: uppercase;
-      letter-spacing: 1px;
-    }
-
+    th,
     td {
-      color: #bbb;
+      padding: 0.875rem 0;
+      text-align: left;
+      vertical-align: top;
+      border-bottom: 1px solid var(--border);
     }
 
-    footer {
-      margin-top: 60px;
-      padding-top: 30px;
-      border-top: 1px solid #222;
-      text-align: center;
-      color: #555;
-      font-size: 13px;
+    th + td,
+    th + th,
+    td + td {
+      padding-left: 1.5rem;
     }
 
-    a {
-      color: #c9a962;
-      text-decoration: none;
+    thead th {
+      padding-block: 0.5rem;
+      border-bottom-color: var(--border-strong);
+      color: var(--text-tertiary);
+      font-size: 0.8125rem;
+      font-weight: 600;
     }
 
-    a:hover {
-      text-decoration: underline;
+    tbody th {
+      color: var(--text);
+      font-weight: 500;
+    }
+
+    .table-stack tbody th {
+      width: 34%;
+    }
+
+    .table-compact td {
+      width: 5rem;
+      color: var(--text);
+      font-weight: 600;
+    }
+
+    @media (max-width: 39.999rem) {
+      .table-stack,
+      .table-stack tbody,
+      .table-stack tr,
+      .table-stack th,
+      .table-stack td {
+        display: block;
+      }
+
+      .table-stack thead {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        overflow: hidden;
+        clip-path: inset(50%);
+        white-space: nowrap;
+      }
+
+      .table-stack tbody tr {
+        padding-block: 0.875rem;
+        border-bottom: 1px solid var(--border);
+      }
+
+      .table-stack tbody tr:first-child {
+        border-top: 1px solid var(--border-strong);
+      }
+
+      .table-stack tbody th,
+      .table-stack tbody td {
+        width: auto;
+        padding: 0;
+        border: 0;
+      }
+
+      .table-stack tbody th {
+        margin-bottom: 0.25rem;
+        font-weight: 600;
+      }
+    }
+
+    /* Footer */
+
+    .site-footer {
+      border-top: 1px solid var(--border);
+      color: var(--text-tertiary);
+      font-size: 0.875rem;
+      line-height: 1.5;
+    }
+
+    .site-footer .container {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      gap: 0.75rem 2rem;
+      padding-block: 1.75rem 2.5rem;
+    }
+
+    .site-footer p + p {
+      margin-top: 0.25rem;
+    }
+
+    /* Wide screens: side table of contents */
+
+    @media (min-width: 48rem) {
+      body {
+        font-size: 1.0625rem;
+      }
+
+      .hero {
+        padding-block: 3.5rem 2.5rem;
+      }
+
+      .summary {
+        padding: 1.5rem 1.75rem 1.625rem;
+      }
+
+      .policy h2 {
+        font-size: 1.4375rem;
+      }
+
+      .policy section + section {
+        margin-top: 3.25rem;
+      }
+    }
+
+    @media (min-width: 64rem) {
+      :root {
+        --container: 59rem;
+        --gutter: 2rem;
+      }
+
+      .layout {
+        grid-template-columns: 13rem minmax(0, 37.5rem);
+        justify-content: space-between;
+        gap: 2.5rem 4rem;
+        padding-bottom: 6rem;
+      }
+
+      .summary {
+        grid-column: 2;
+        grid-row: 1;
+        scroll-margin-top: 1.5rem;
+      }
+
+      .policy {
+        grid-column: 2;
+        grid-row: 2;
+        margin-top: 0;
+      }
+
+      .toc {
+        grid-column: 1;
+        grid-row: 1 / span 2;
+        align-self: start;
+        position: sticky;
+        top: 1.5rem;
+        max-height: calc(100vh - 3rem);
+        overflow-y: auto;
+        padding: 0;
+        border: 0;
+        border-radius: 0;
+        font-size: 0.875rem;
+      }
+
+      .toc-title {
+        margin-bottom: 0.75rem;
+      }
+
+      .toc ol {
+        border-left: 1px solid var(--border);
+        scroll-target-group: auto;
+      }
+
+      .toc .toc-summary {
+        display: list-item;
+      }
+
+      .toc a {
+        margin-left: -1px;
+        padding: 0.3125rem 0 0.3125rem 0.875rem;
+        border-left: 1px solid transparent;
+        outline-offset: -2px;
+      }
+
+      .toc a:hover {
+        border-left-color: var(--border-strong);
+        text-decoration: none;
+      }
+
+      .toc a:target-current {
+        border-left-color: var(--accent);
+        box-shadow: inset 1px 0 0 var(--accent);
+        color: var(--text);
+      }
+    }
+
+    @media print {
+      :root {
+        --bg: #ffffff;
+        --surface: #ffffff;
+        --text: #000000;
+        --text-secondary: #1a1a1a;
+        --text-tertiary: #444444;
+        --border: #cccccc;
+        --border-strong: #999999;
+        --accent: #000000;
+      }
+
+      body {
+        font-size: 11pt;
+      }
+
+      .skip-link,
+      .toc {
+        display: none;
+      }
+
+      .layout {
+        display: block;
+        padding-bottom: 2rem;
+      }
+
+      .summary {
+        margin-bottom: 2rem;
+      }
+
+      .policy h2 {
+        break-after: avoid;
+      }
+
+      tr,
+      li {
+        break-inside: avoid;
+      }
     }
   </style>
 </head>
 <body>
-  <div class="container">
-    <header>
-      <div class="logo">&#9672;</div>
+  <a class="skip-link" href="#content">Skip to content</a>
+
+  <header class="site-header">
+    <div class="container">
+      <span class="product">dmer</span>
+      <p class="updated">Last updated <time datetime="2024-12-08">December 8, 2024</time></p>
+    </div>
+  </header>
+
+  <main id="content" class="container">
+    <div class="hero">
       <h1>dmer Privacy Policy</h1>
       <p class="subtitle">Distraction-free Instagram DM Client</p>
-    </header>
-
-    <div class="highlight">
-      <p><strong>Summary:</strong> dmer does not collect, store, or transmit any user data. Your privacy is fully protected.</p>
     </div>
 
-    <h2>What Data We Collect</h2>
-    <p><span class="badge">None</span> dmer does not collect any personal information, browsing data, or usage statistics.</p>
+    <div class="layout">
+      <section class="summary" id="summary" aria-labelledby="summary-title">
+        <h2 id="summary-title">Summary</h2>
+        <p>dmer does not collect, store, or transmit any user data. Your privacy is fully protected.</p>
+      </section>
 
-    <h2>What the Extension Does</h2>
-    <p>dmer is a browser extension that modifies the visual appearance of Instagram to help you focus on direct messages. It works by:</p>
-    <ul>
-      <li>Injecting CSS styles to hide distracting elements (feed, stories, reels, explore)</li>
-      <li>Running a small JavaScript to block navigation to distracting pages</li>
-      <li>Storing your on/off preference locally on your device</li>
-    </ul>
+      <nav class="toc" aria-labelledby="toc-title">
+        <p class="toc-title" id="toc-title">On this page</p>
+        <ol role="list">
+          <li class="toc-summary"><a href="#summary">Summary</a></li>
+          <li><a href="#what-data-we-collect">What Data We Collect</a></li>
+          <li><a href="#what-the-extension-does">What the Extension Does</a></li>
+          <li><a href="#what-we-do-not-do">What We Do NOT Do</a></li>
+          <li><a href="#permissions-explained">Permissions Explained</a></li>
+          <li><a href="#data-storage">Data Storage</a></li>
+          <li><a href="#third-parties">Third Parties</a></li>
+          <li><a href="#open-source">Open Source</a></li>
+          <li><a href="#changes-to-this-policy">Changes to This Policy</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ol>
+      </nav>
 
-    <h2>What We Do NOT Do</h2>
-    <table>
-      <tr>
-        <th>Activity</th>
-        <th>Status</th>
-      </tr>
-      <tr>
-        <td>Collect personal information</td>
-        <td><span class="badge no">No</span></td>
-      </tr>
-      <tr>
-        <td>Read your messages or DMs</td>
-        <td><span class="badge no">No</span></td>
-      </tr>
-      <tr>
-        <td>Access your login credentials</td>
-        <td><span class="badge no">No</span></td>
-      </tr>
-      <tr>
-        <td>Send data to external servers</td>
-        <td><span class="badge no">No</span></td>
-      </tr>
-      <tr>
-        <td>Track your browsing activity</td>
-        <td><span class="badge no">No</span></td>
-      </tr>
-      <tr>
-        <td>Use cookies or tracking pixels</td>
-        <td><span class="badge no">No</span></td>
-      </tr>
-      <tr>
-        <td>Access other websites</td>
-        <td><span class="badge no">No</span></td>
-      </tr>
-      <tr>
-        <td>Modify your posts or messages</td>
-        <td><span class="badge no">No</span></td>
-      </tr>
-    </table>
+      <div class="policy">
+        <section id="what-data-we-collect">
+          <h2>What Data We Collect</h2>
+          <p><strong>None</strong> dmer does not collect any personal information, browsing data, or usage statistics.</p>
+        </section>
 
-    <h2>Permissions Explained</h2>
-    <p><strong>storage:</strong> Used solely to save your preference for enabling or disabling the extension. This data never leaves your device.</p>
-    <p><strong>host_permissions (instagram.com):</strong> Required to inject the CSS that hides distracting elements on Instagram. The extension only operates on instagram.com and no other websites.</p>
+        <section id="what-the-extension-does">
+          <h2>What the Extension Does</h2>
+          <p>dmer is a browser extension that modifies the visual appearance of Instagram to help you focus on direct messages. It works by:</p>
+          <ul>
+            <li>Injecting CSS styles to hide distracting elements (feed, stories, reels, explore)</li>
+            <li>Running a small JavaScript to block navigation to distracting pages</li>
+            <li>Storing your on/off preference locally on your device</li>
+          </ul>
+        </section>
 
-    <h2>Data Storage</h2>
-    <p>The only data stored is your extension preference (on/off toggle), which is saved locally in your browser using Chrome's storage API. This data:</p>
-    <ul>
-      <li>Never leaves your device</li>
-      <li>Is not accessible to us or any third party</li>
-      <li>Is deleted when you uninstall the extension</li>
-    </ul>
+        <section id="what-we-do-not-do">
+          <h2 id="what-we-do-not-do-title">What We Do NOT Do</h2>
+          <div class="table-wrap">
+            <table class="table-compact" aria-labelledby="what-we-do-not-do-title">
+              <thead>
+                <tr>
+                  <th scope="col">Activity</th>
+                  <th scope="col">Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">Collect personal information</th>
+                  <td>No</td>
+                </tr>
+                <tr>
+                  <th scope="row">Read your messages or DMs</th>
+                  <td>No</td>
+                </tr>
+                <tr>
+                  <th scope="row">Access your login credentials</th>
+                  <td>No</td>
+                </tr>
+                <tr>
+                  <th scope="row">Send data to external servers</th>
+                  <td>No</td>
+                </tr>
+                <tr>
+                  <th scope="row">Track your browsing activity</th>
+                  <td>No</td>
+                </tr>
+                <tr>
+                  <th scope="row">Use cookies or tracking pixels</th>
+                  <td>No</td>
+                </tr>
+                <tr>
+                  <th scope="row">Access other websites</th>
+                  <td>No</td>
+                </tr>
+                <tr>
+                  <th scope="row">Modify your posts or messages</th>
+                  <td>No</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
 
-    <h2>Third Parties</h2>
-    <p>dmer does not share any information with third parties because we do not collect any information in the first place.</p>
+        <section id="permissions-explained">
+          <h2>Permissions Explained</h2>
+          <p><strong>storage:</strong> Used solely to save your preference for enabling or disabling the extension. This data never leaves your device.</p>
+          <p><strong>host_permissions (instagram.com):</strong> Required to inject the CSS that hides distracting elements on Instagram. The extension only operates on instagram.com and no other websites.</p>
+        </section>
 
-    <h2>Open Source</h2>
-    <p>dmer is open source. You can review all the code to verify our privacy practices.</p>
+        <section id="data-storage">
+          <h2>Data Storage</h2>
+          <p>The only data stored is your extension preference (on/off toggle), which is saved locally in your browser using Chrome's storage API. This data:</p>
+          <ul>
+            <li>Never leaves your device</li>
+            <li>Is not accessible to us or any third party</li>
+            <li>Is deleted when you uninstall the extension</li>
+          </ul>
+        </section>
 
-    <h2>Changes to This Policy</h2>
-    <p>If we make any changes to this privacy policy, we will update this page with the new information and change the "Last Updated" date below.</p>
+        <section id="third-parties">
+          <h2>Third Parties</h2>
+          <p>dmer does not share any information with third parties because we do not collect any information in the first place.</p>
+        </section>
 
-    <h2>Contact</h2>
-    <p>If you have any questions about this privacy policy or the extension, please contact us at:</p>
-    <p><a href="mailto:xiaoyiruan.ca@gmail.com">xiaoyiruan.ca@gmail.com</a></p>
+        <section id="open-source">
+          <h2>Open Source</h2>
+          <p>dmer is open source. You can review all the code to verify our privacy practices.</p>
+        </section>
 
-    <footer>
-      <p>Last Updated: December 8, 2024</p>
-      <p style="margin-top: 10px;">&#9672; dmer - Focus on conversations, not algorithms</p>
-    </footer>
-  </div>
+        <section id="changes-to-this-policy">
+          <h2>Changes to This Policy</h2>
+          <p>If we make any changes to this privacy policy, we will update this page with the new information and change the "Last Updated" date below.</p>
+        </section>
+
+        <section id="contact">
+          <h2>Contact</h2>
+          <p>If you have any questions about this privacy policy or the extension, please contact us at:</p>
+          <p><a href="mailto:xiaoyiruan.ca@gmail.com">xiaoyiruan.ca@gmail.com</a></p>
+        </section>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container">
+      <div>
+        <p>Last Updated: December 8, 2024</p>
+        <p>dmer - Focus on conversations, not algorithms</p>
+      </div>
+      <p>Contact: <a href="mailto:xiaoyiruan.ca@gmail.com">xiaoyiruan.ca@gmail.com</a></p>
+    </div>
+  </footer>
 </body>
 </html>
-
-
